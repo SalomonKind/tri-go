@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri'Go</title>
+    
+    <!-- Tailwind CSS (Estilização Rápida) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração de Cores do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="src/image/logo.svg" type="image/x-icon">
+
+</head>
+<body class="font-['Inter'] text-gray-900 bg-white antialiased">
+
+     <!-- HEADER CORRIGIDO -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 z-50 transition-all">
+        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+            
+            <!-- 1. Logo -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center">
+                    <i data-lucide="stethoscope" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900 tracking-tight">Tri'Go</span>
+            </div>
+
+            <!-- 2. Navegação Central (CORRIGIDO: lg:flex) -->
+            <!-- Agora visível em telas de computador (Laptops/Desktops) -->
+            <nav class="hidden lg:flex items-center gap-5 absolute left-1/2 transform -translate-x-1/2">
+                <a href="#inicio" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Início
+                </a>
+                <a href="#como-funciona" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Como Funciona
+                </a>
+                <a href="#especialidades" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Especialidades
+                </a>
+                <a href="#vantagens" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Vantagens
+                </a>
+                <a href="#triagem" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Triagem
+                </a>
+                <a href="#contato-info" class="text-slate-600 hover:text-green-700 font-medium text-sm transition-colors whitespace-nowrap">
+                    Contato
+                </a>
+            </nav>
+
+            <!-- 3. Lado Direito -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="tel:+5511999999999" class="hidden xl:flex items-center gap-2 text-slate-500 hover:text-green-700 font-medium text-sm transition-colors">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    (11) 99999-9999
+                </a>
+                
+                <button onclick="scrollToSection('triagem')" class="bg-gray-900 hover:bg-black text-white px-6 py-2.5 rounded-lg font-medium text-sm shadow-sm hover:shadow-md transition-all transform hover:-translate-y-0.5 whitespace-nowrap">
+                    Iniciar Triagem
+                </button>
+            </div>
+
+            <!-- Botão Mobile (CORRIGIDO: lg:hidden) -->
+            <!-- Só aparece em Tablets e Celulares -->
+            <button id="mobileMenuBtn" class="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white px-4 py-4 flex flex-col gap-4 shadow-lg absolute w-full">
+            <a href="#inicio" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Início</a>
+            <a href="#como-funciona" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Como Funciona</a>
+            <a href="#especialidades" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Especialidades</a>
+            <a href="#vantagens" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Vantagens</a>
+            <a href="#triagem" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Triagem</a>
+            <a href="#contato-info" class="block py-2 text-gray-600 font-medium border-b border-gray-50">Contato</a>
+            
+            <div class="pt-2 flex flex-col gap-3">
+                <a href="tel:+5511999999999" class="flex items-center gap-2 text-gray-500 text-sm">
+                    <i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999
+                </a>
+                <button onclick="scrollToSection('triagem')" class="w-full bg-gray-900 text-white py-3 rounded-lg font-medium">
+                    Iniciar Triagem
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-28">
+            <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate-fade-in-up">
+                    <span class="inline-block px-4 py-1.5 bg-brand-50 text-brand-700 rounded-full text-sm font-semibold tracking-wide">
+                        Conectando você à saúde ideal
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                        Triagem inteligente que te leva à clínica certa.
+                    </h1>
+                    <p class="text-lg text-gray-600 max-w-lg">
+                        Não perca tempo e dinheiro com consultas erradas. Nossa triagem prévia dos sintomas e encaminha para a especialidade adequada.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button onclick="scrollToSection('triagem')" class="bg-brand-700 hover:bg-brand-800 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition transform">
+                            Fazer Triagem Grátis <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+        
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-100">
+                        <div><strong class="block text-2xl text-brand-900">50k+</strong><span class="text-sm text-gray-500">Pacientes</span></div>
+                        <div><strong class="block text-2xl text-brand-900">200+</strong><span class="text-sm text-gray-500">Clínicas</span></div>
+                        <div><strong class="block text-2xl text-brand-900">95%</strong><span class="text-sm text-gray-500">Precisão</span></div>
+                    </div>
+                </div>
+
+                <div class="relative animate-fade-in">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Médico analisando" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Floating Card -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 animate-float">
+                        <div class="bg-brand-100 p-3 rounded-full">
+                            <i data-lucide="clock" class="text-brand-700 w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Rápido</p>
+                            <p class="text-xs text-gray-500">Triagem em 5 min</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="como-funciona" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Como Funciona</h2>
+                    <p class="text-gray-600">Simplificamos o processo de saúde em 4 passos simples.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Passos -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-700 group-hover:text-white transition">
+                            <i data-lucide="clipboard-list" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">1. Descreva</h3>
+                        <p class="text-sm text-gray-600">Conte o que está sentindo em nosso formulário inteligente.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-700 group-hover:text-white transition">
+                            <i data-lucide="search" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">2. Análise</h3>
+                        <p class="text-sm text-gray-600">O sistema identifica a possível especialidade necessária.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-700 group-hover:text-white transition">
+                            <i data-lucide="user-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">3. Recomendação</h3>
+                        <p class="text-sm text-gray-600">Veja a especialidade ideal e as clínicas próximas.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-700 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-700 group-hover:text-white transition">
+                            <i data-lucide="calendar" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">4. Agendamento</h3>
+                        <p class="text-sm text-gray-600">Reserve seu horário instantaneamente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIALTIES COVERAGE (Adicionado ID para link) -->
+        <section id="especialidades" class="py-20 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Cobertura de Especialidades</h2>
+                    <p class="text-lg text-gray-600">
+                        Nossa plataforma conecta você com mais de <span class="text-brand-700 font-bold">20 especialidades médicas</span>, garantindo o atendimento exato para sua necessidade.
+                    </p>
+                </div>
+
+                <!-- Grid de Especialidades -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Card Especialidade -->
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-brand-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="heart-pulse" class="w-5 h-5 text-brand-700"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Cardiologia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-blue-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="sun" class="w-5 h-5 text-blue-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Dermatologia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-orange-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="bone" class="w-5 h-5 text-orange-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Ortopedia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-purple-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="brain-circuit" class="w-5 h-5 text-purple-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Neurologia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-pink-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="baby" class="w-5 h-5 text-pink-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Pediatria</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-teal-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="eye" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Oftalmologia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-yellow-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="smile" class="w-5 h-5 text-yellow-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Odontologia</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:shadow-md hover:bg-brand-50/30 transition-all cursor-default group">
+                        <div class="bg-red-100 p-2 rounded-full shrink-0">
+                            <i data-lucide="activity" class="w-5 h-5 text-red-600"></i>
+                        </div>
+                        <span class="font-medium text-gray-700 group-hover:text-brand-900">Ginecologia</span>
+                    </div>
+                    
+                    <div class="col-span-2 md:col-span-3 lg:col-span-4 mt-4 text-center">
+                        <span class="inline-flex items-center gap-2 text-sm text-gray-500 bg-gray-50 px-4 py-2 rounded-full">
+                            <i data-lucide="plus" class="w-4 h-4"></i> E muitas outras especialidades disponíveis
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US (Adicionado ID para link) -->
+        <section id="vantagens" class="py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Lado Esquerdo: Texto e Cards -->
+                    <div class="space-y-8">
+                        <div>
+                            <span class="inline-block px-4 py-2 bg-green-50 text-brand-700 rounded-full text-sm font-medium mb-4">
+                                Por que usar nossa plataforma
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                A maneira mais inteligente de cuidar da sua saúde
+                            </h2>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                Somos uma ponte entre você e a clínica ideal. Nossa missão é garantir que você receba o atendimento certo, na primeira vez, economizando tempo e recursos.
+                            </p>
+                        </div>
+
+                        <!-- Grid de Benefícios -->
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <!-- Card 1 -->
+                            <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="target" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Diagnóstico Certeiro</h3>
+                                <p class="text-sm text-gray-500">Evite consultas desnecessárias indo direto para a especialidade correta.</p>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="dollar-sign" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Economize Dinheiro</h3>
+                                <p class="text-sm text-gray-500">Não gaste com consultas erradas que não resolvem seu problema.</p>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="clock" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Ganhe Tempo</h3>
+                                <p class="text-sm text-gray-500">Triagem em 5 minutos e recomendação imediata da especialidade.</p>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Clínicas Certificadas</h3>
+                                <p class="text-sm text-gray-500">Conectamos você apenas com clínicas parceiras verificadas.</p>
+                            </div>
+                            
+                            <!-- Card 5 -->
+                             <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="network" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Rede Ampla</h3>
+                                <p class="text-sm text-gray-500">Acesso a centenas de especialistas na sua região.</p>
+                            </div>
+
+                            <!-- Card 6 -->
+                            <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-brand-100 transition duration-300">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="award" class="w-6 h-6 text-brand-700"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">Qualidade</h3>
+                                <p class="text-sm text-gray-500">Avaliação constante dos atendimentos realizados.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lado Direito: Imagem com Card Flutuante -->
+                    <div class="relative h-full min-h-[500px]">
+                        <!-- Imagem Principal -->
+                        <div class="rounded-3xl overflow-hidden h-full shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop" 
+                                 alt="Médico atendendo paciente" 
+                                 class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Card Flutuante (Taxa de Sucesso) -->
+                        <div class="absolute top-12 -right-6 md:-right-12 bg-white p-6 rounded-2xl shadow-xl animate-float max-w-[200px]">
+                            <div class="text-center">
+                                <p class="text-brand-700 font-medium text-sm mb-1">Taxa de Sucesso</p>
+                                <h4 class="text-4xl font-bold text-gray-900 mb-1">95%</h4>
+                                <p class="text-xs text-gray-500">dos pacientes satisfeitos com o encaminhamento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TRIAGE SECTION (APP CORE) -->
+        <section id="triagem" class="py-24 bg-white scroll-mt-16">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+                    
+                    <!-- Header da Triagem -->
+                    <div class="bg-gray-50 p-8 border-b text-center">
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Triagem Gratuita</span>
+                        <h2 class="text-2xl font-bold mt-3 text-gray-900">Descubra sua Especialidade</h2>
+                        
+                        <!-- Barra de Progresso -->
+                        <div class="flex items-center justify-center gap-4 mt-6">
+                            <div class="flex items-center gap-2">
+                                <div id="indicator-step-1" class="w-8 h-8 rounded-full bg-brand-700 text-white flex items-center justify-center font-bold transition-all">1</div>
+                                <span class="text-sm font-medium text-gray-700 hidden sm:inline">Dados</span>
+                            </div>
+                            <div class="w-12 h-1 bg-gray-200 rounded">
+                                <div id="progress-line" class="h-full bg-brand-700 w-0 transition-all duration-500"></div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div id="indicator-step-2" class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold transition-all">2</div>
+                                <span class="text-sm font-medium text-gray-500 hidden sm:inline">Sintomas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FORMULARIO -->
+                    <div class="p-8 md:p-12">
+                        
+                        <!-- STEP 1: Dados Pessoais -->
+                        <div id="step-1" class="space-y-6 animate-fade-in">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">Nome Completo *</label>
+                                    <input type="text" id="input-name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 outline-none transition" placeholder="Seu nome">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">Idade *</label>
+                                    <input type="number" id="input-age" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 outline-none transition" placeholder="Anos">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">WhatsApp *</label>
+                                    <input type="tel" id="input-phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 outline-none transition" placeholder="(00) 00000-0000">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="input-email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 outline-none transition" placeholder="seu@email.com">
+                                </div>
+                            </div>
+                            <button onclick="nextStep()" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                                Continuar <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <!-- STEP 2: Sintomas -->
+                        <div id="step-2" class="hidden space-y-6 animate-fade-in">
+                            <div class="space-y-3">
+                                <label class="text-base font-semibold text-gray-900">O que você está sentindo? (Selecione todos que se aplicam) *</label>
+                                <div class="grid md:grid-cols-2 gap-3" id="symptoms-grid">
+                                    <!-- Checkboxes gerados via JS -->
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-700">Descreva com suas palavras *</label>
+                                <textarea id="input-desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 outline-none" placeholder="Ex: Dor aguda no lado direito que piora ao comer..."></textarea>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-sm font-medium text-gray-700">Duração</label>
+                                    <select id="input-duration" class="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 bg-white">
+                                        <option value="">Selecione...</option>
+                                        <option value="hoje">Começou hoje</option>
+                                        <option value="semana">Alguns dias</option>
+                                        <option value="mes">Mais de um mês</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-gray-700">Urgência Percebida</label>
+                                    <select id="input-urgency" class="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 bg-white">
+                                        <option value="">Selecione...</option>
+                                        <option value="baixa">Pode esperar</option>
+                                        <option value="media">Gostaria essa semana</option>
+                                        <option value="alta">Preciso pra hoje/amanhã</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <button onclick="prevStep()" class="flex-1 border border-gray-300 text-gray-700 font-bold py-4 rounded-xl hover:bg-gray-50 transition">
+                                    Voltar
+                                </button>
+                                <button onclick="finishTriage()" class="flex-1 bg-brand-700 hover:bg-brand-800 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                                    Finalizar <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- RESULTADO -->
+                        <div id="result-screen" class="hidden text-center animate-fade-in py-8">
+                            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-lucide="check" class="w-12 h-12 text-brand-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Triagem Concluída!</h3>
+                            <p class="text-gray-600 mb-8">Com base na análise dos seus sintomas, recomendamos:</p>
+
+                            <div class="bg-brand-50 border-2 border-brand-200 rounded-2xl p-8 mb-8 max-w-md mx-auto transform hover:scale-105 transition duration-300 cursor-pointer">
+                                <p class="text-brand-800 font-medium uppercase tracking-widest text-sm mb-2">Especialidade Recomendada</p>
+                                <h2 id="result-specialty" class="text-3xl font-bold text-brand-900">Clínico Geral</h2>
+                            </div>
+
+                            <div class="bg-gray-50 rounded-xl p-6 text-left max-w-lg mx-auto">
+                                <h4 class="font-bold text-gray-900 mb-4 border-b pb-2">Próximos Passos:</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3 text-gray-700">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                                        Encontramos 3 clínicas próximas a você.
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-700">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                                        Um atendente entrará em contato pelo WhatsApp.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button onclick="restartTriage()" class="mt-8 text-brand-700 font-medium hover:underline">Fazer nova triagem</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CONTACT CARDS SECTION -->
+        <section id="contato-info" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-4">
+                
+                <!-- Cabeçalho -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block px-4 py-2 bg-green-50 text-brand-700 rounded-full text-sm font-medium mb-4">
+                        Entre em Contato
+                    </span>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                        Estamos Aqui para Ajudar
+                    </h2>
+                    <p class="text-gray-600">
+                        Ficou com alguma dúvida? Nossa equipe de atendimento está pronta para auxiliar você.
+                    </p>
+                </div>
+
+                <!-- Grid de Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Card 1: Escritório -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center group">
+                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-600 transition-colors duration-300">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-brand-700 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Escritório</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Avenida Castelo Branco, 82<br>MG
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Telefone -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center group">
+                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-600 transition-colors duration-300">
+                            <i data-lucide="phone" class="w-6 h-6 text-brand-700 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Telefone</h3>
+                        <a href="tel:+5511999999999" class="text-sm text-gray-600 hover:text-brand-700 transition-colors block">
+                            (11) 99999-9999
+                        </a>
+                    </div>
+
+                    <!-- Card 3: Email -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center group">
+                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-600 transition-colors duration-300">
+                            <i data-lucide="mail" class="w-6 h-6 text-brand-700 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Email</h3>
+                        <a href="mailto:contato@triagemsaude.com.br" class="text-sm text-gray-600 hover:text-brand-700 transition-colors block break-all">
+                            contato@triagemsaude.com.br
+                        </a>
+                    </div>
+
+                    <!-- Card 4: Atendimento -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center group">
+                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-600 transition-colors duration-300">
+                            <i data-lucide="clock" class="w-6 h-6 text-brand-700 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Atendimento</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Segunda a Sexta: 8h às 20h<br>
+                            Sábado: 8h às 14h
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    <!-- FOOTER -->
+    <footer id="contato" class="bg-gray-50 border-t pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-700 rounded-md flex items-center justify-center">
+                            <i data-lucide="stethoscope" class="text-white w-4 h-4"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">Tri'Go</span>
+                    </div>
+                    <p class="text-gray-600 max-w-sm">Sua plataforma de conexão com a saúde. Triagem inteligente, agendamento rápido e as melhores clínicas da região.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#inicio" class="hover:text-brand-700">Início</a></li>
+                        <li><a href="#triagem" class="hover:text-brand-700">Triagem</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Para Clínicas</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Ajuda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Três Corações, MG</li>
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> contatosalomaogentil@gmail.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> (35) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t pt-8 text-center text-gray-500 text-sm">
+                &copy; 2025 Tri'Go Saúde. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Link -->
+    <script src="src/js/script.js"></script>
+</body>
+</html>

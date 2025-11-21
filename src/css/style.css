@@ -1,0 +1,58 @@
+/* Comportamento de rolagem suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Font Family padrão */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Animações personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Utilitários de estado */
+.hidden {
+    display: none !important;
+}
+
+/* Scroll margin para a navbar fixa não tapar o conteúdo */
+.scroll-mt-16 {
+    scroll-margin-top: 5rem;
+}
+
+/* Estilização customizada do Checkbox para ficar mais bonito */
+input[type="checkbox"] {
+    accent-color: #15803d; /* brand-700 */
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+}
+
